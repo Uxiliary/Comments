@@ -25,6 +25,7 @@ class Comments_CommentRecord extends BaseRecord
 			'ipAddress'		=> array(AttributeType::String),
 			'userAgent'		=> array(AttributeType::String),
 			'comment'		=> array(AttributeType::Mixed),
+			'rating'		=> array(AttributeType::String),
 		);
 	}
 

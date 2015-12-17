@@ -140,13 +140,14 @@ class Comments_CommentElementType extends BaseElementType
 			'userAgent'		=> array(AttributeType::String),
 			'comment'		=> array(AttributeType::Mixed),
 			'order'			=> array(AttributeType::String, 'default' => 'lft, commentDate desc'),
+            'rating'        => array(AttributeType::String),
         );
     }
 
 	public function modifyElementsQuery(DbCommand $query, ElementCriteriaModel $criteria)
 	{
         $query
-		->addSelect('comments.elementId, comments.userId, comments.elementType, comments.structureId, comments.status, comments.name, comments.email, comments.url, comments.ipAddress, comments.userAgent, comments.comment, comments.dateCreated AS commentDate')
+		->addSelect('comments.elementId, comments.userId, comments.elementType, comments.structureId, comments.status, comments.name, comments.email, comments.url, comments.ipAddress, comments.userAgent, comments.comment, comments.rating, comments.dateCreated AS commentDate')
 		->join('comments comments', 'comments.id = elements.id')
 		->leftJoin('comments_votes comments_votes', 'comments_votes.commentId = comments.id')
 		->leftJoin('structures structures', 'structures.id = comments.structureId')

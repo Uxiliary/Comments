@@ -110,6 +110,7 @@ class CommentsController extends BaseController
         $commentModel->name = array_key_exists('name', $fields) ? $fields['name'] : null;
         $commentModel->email = array_key_exists('email', $fields) ? $fields['email'] : null;
         $commentModel->comment = array_key_exists('comment', $fields) ? $fields['comment'] : null;
+        $commentModel->rating = array_key_exists('rating', $fields) ? $fields['rating'] : null;
 
         // Set any new comment to be pending if requireModeration is true
         if ($fieldSettings->requireModeration) {
