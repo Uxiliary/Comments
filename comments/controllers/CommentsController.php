@@ -149,7 +149,7 @@ class CommentsController extends BaseController
         // Is this user logged in? Or they've provided user/email?
         if ($commentModel->userId || ($commentModel->name && $commentModel->email)) {
             $result = craft()->comments->saveComment($commentModel);
-
+            setcookie("comments", $commentModel->elementId, time()+999999, craft()->request->getRequestUri());
             craft()->comments->response($this, $result);
         } else {
             craft()->comments->response($this, array('error' => 'Must be logged in, or supply Name/Email to comment.'));
