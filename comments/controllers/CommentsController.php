@@ -99,12 +99,12 @@ class CommentsController extends BaseController
         $commentModel->userId = ($user) ? $user->id : null;
         $commentModel->parentId = craft()->request->getPost('parentId');
         $commentModel->structureId = craft()->comments->getStructureId();
-        
+
         // Other handy stuff
         $commentModel->url = craft()->request->urlReferrer;
         $commentModel->ipAddress = craft()->request->getUserHostAddress();
         $commentModel->userAgent = craft()->request->getUserAgent();
-            
+
         // Handle the fields
         $fields = craft()->request->getPost('fields');
         $commentModel->name = array_key_exists('name', $fields) ? $fields['name'] : null;
@@ -154,6 +154,7 @@ class CommentsController extends BaseController
         } else {
             craft()->comments->response($this, array('error' => 'Must be logged in, or supply Name/Email to comment.'));
         }
+
     }
 
     public function actionFlagComment()

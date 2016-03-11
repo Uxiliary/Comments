@@ -1,24 +1,27 @@
 .status {
 	display: inline-block;
-	width: 10px;
-	height: 10px;
-	background: url(../img/status.png?d=1415077322) no-repeat 0 -50px;
+	width: 8px;
+	height: 8px;
+	/*background: url(../img/status.png?d=1415077322) no-repeat 0 -50px;*/
+	border: 1px solid transparent;
 }
 
 .status.approved {
 	background-position: 0 0;
+	background-color: #00b639;
 }
 
 .status.pending {
 	background-position: 0 -10px;
+	background-color: #F2842D;
 }
 
 .status.spam {
-	background-position: 0 -40px;
+	background-color: #d41110;
 }
 
 .status.trashed {
-	background-position: 0 -20px;
+	background-color: #b9b9b9;
 }
 
 
@@ -27,23 +30,18 @@
 	display: none;
 }
 
-.elementindex td[data-title="Status"] {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	
-	/* .thin */
-	width: 0.01% !important;
-	vertical-align: middle;
+.elementindex td[data-title="Comment"] {
+    width: 40%;
+}
+
+.elementindex td[data-title="Rating"] {
+	text-align: center;
+	padding: 0 !important;
 }
 
 
-
-
-
-.elementindex .comment-block .status {
-	display: block;
-	float: left;
-	margin: 3px 10px 0 0;
+.elementindex .status, .elementindex .rating {
+	margin: 0 10px 0 13px !important;
 }
 
 .elementindex .comment-block a {
@@ -51,6 +49,7 @@
 }
 
 .elementindex .comment-block a small {
+	width: 90%;
 	color: #aaa;
 	font-size: 85%;
 	display: block;

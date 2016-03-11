@@ -63,6 +63,8 @@ class Comments_CommentElementType extends BaseElementType
     {
         return array(
             'id'			=> Craft::t(''),
+            'status'       => Craft::t('Status'),
+            'rating'       => Craft::t('Rating'),
             'comment'		=> Craft::t('Comment'),
             'dateCreated' 	=> Craft::t('Date'),
             'element' 		=> Craft::t('Element'),
@@ -73,6 +75,8 @@ class Comments_CommentElementType extends BaseElementType
     {
         return array(
             'dateCreated' 	=> Craft::t('Date'),
+            'rating'       => Craft::t('Rating'),
+            'status'       => Craft::t('Status'),
             'comment'		=> Craft::t('Comment'),
             'element' 		=> Craft::t('Element'),
         );
@@ -100,6 +104,9 @@ class Comments_CommentElementType extends BaseElementType
                     return "<a href='" . $element->cpEditUrl . "'>" . $element->title . "</a>";
                 }
             }
+            case 'status': {
+                return '<span class="status '.$element->status.'"></span>';
+            }
             case 'comment': {
                 $user = craft()->users->getUserById($element->userId);
 
@@ -111,10 +118,9 @@ class Comments_CommentElementType extends BaseElementType
                 }
 
                 $html = '<div class="comment-block">';
-                $html .= '<span class="status '.$element->status.'"></span>';
             	$html .= '<a href="' . $element->getCpEditUrl() . '">';
             	$html .= '<span class="username">' . $userName . '</span>';
-            	$html .= '<small>' . $element->getExcerpt(0, 100) . '</small></a>';
+            	$html .= '<small>' . $element->getExcerpt(0, 150) . '</small></a>';
             	$html .= '</div>';
             	return $html;
             }
@@ -139,8 +145,10 @@ class Comments_CommentElementType extends BaseElementType
 			'ipAddress'		=> array(AttributeType::String),
 			'userAgent'		=> array(AttributeType::String),
 			'comment'		=> array(AttributeType::Mixed),
-			'order'			=> array(AttributeType::String, 'default' => 'lft, commentDate desc'),
             'rating'        => array(AttributeType::String),
+			'order'			=> array(AttributeType::String, 'default' => 'lft, commentDate desc'),
+            'title'         => array(AttributeType::String),
+            'description'   => array(AttributeType::String),
         );
     }
 
@@ -196,6 +204,10 @@ class Comments_CommentElementType extends BaseElementType
 		if ($criteria->comment) {
 			$query->andWhere(DbHelper::parseParam('comments.comment', $criteria->comment, $query->params));
 		}
+
+        if ($criteria->rating) {
+            $query->andWhere(DbHelper::parseParam('comments.rating', $criteria->rating, $query->params));
+        }
 
 		if ($criteria->dateCreated) {
 			$query->andWhere(DbHelper::parseDateParam('comments.dateCreated', $criteria->dateCreated, $query->params));

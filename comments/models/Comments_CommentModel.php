@@ -30,7 +30,7 @@ class Comments_CommentModel extends BaseElementModel
 			'ipAddress'		=> array(AttributeType::String),
 			'userAgent'		=> array(AttributeType::String),
 			'comment'		=> array(AttributeType::String),
-            'rating'        => array(AttributeType::String),
+            'rating'       => array(AttributeType::String),
 
 			// Just used for saving
 			'parentId'      => AttributeType::Number,
